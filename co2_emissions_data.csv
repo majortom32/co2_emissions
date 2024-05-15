@@ -1,0 +1,239 @@
+,Country,CO2_emissions,Population,Happiness_index,Life_expectancy,Fertility_rate,Corruption_perception_index,Income.level
+1,Afghanistan,11874211,40099460,2.4,62,3.9,16,Low-income
+2,Albania,4619109,2854710,5.2,76.5,1.7,36,High-income
+3,Algeria,176269070,44177964,5.12,76.4,2.49,35,Low-income
+4,American Samoa,NA,NA,NA,NA,NA,NA,High-income
+5,Andorra,452888,79057,NA,80.4,NA,NA,High-income
+6,Angola,21362716,34503776,NA,61.6,5.34,19,Low-income
+7,Anguilla,144744,15779,NA,76.6,NA,NA,Low-income
+8,Antigua and Barbuda,468695,93229,NA,78.5,2,NA,High-income
+9,Argentina,186448290,45276788,5.97,75.4,2.22,40,High-income
+10,Armenia,6806045,2790971,5.4,72,1.58,35,High-income
+11,Aruba,858126,106543,NA,74.6,1.79,NA,High-income
+12,Australia,391187420,25921094,7.16,84.5,1.81,77,High-income
+13,Austria,64625588,8922086,7.16,81.6,1.55,76,High-income
+14,Azerbaijan,38492804,10312992,5.17,69.4,2,25,High-income
+15,Bahamas,2386463,407920,NA,71.6,1.73,65,High-income
+16,Bahrain,39016090,1463266,6.65,78.8,1.92,36,High-income
+17,Bangladesh,93175944,169356240,5.16,72.4,1.97,26,Low-income
+18,Barbados,1125301,281204,NA,77.6,1.8,68,High-income
+19,Belarus,59602456,9578172,5.82,72.4,1.74,44,High-income
+20,Belgium,95722280,11611416,6.81,81.9,1.81,75,High-income
+21,Belize,689321,400037,NA,70.5,2.35,NA,High-income
+22,Benin,7755815,12996901,4.62,59.8,4.64,40,Low-income
+23,Bermuda,547960,64213,NA,79.3,NA,NA,High-income
+24,Bhutan,1522086,777500,NA,71.8,1.91,68,Low-income
+25,Bolivia,23321668,12079474,5.6,63.6,2.7,29,Low-income
+26,Bonaire Sint Eustatius and Saba,103389,26730,NA,75.1,NA,NA,Low-income
+27,Bosnia and Herzegovina,13566311,3270948,5.77,75.3,1.43,38,High-income
+28,Botswana,6499919,2588424,3.47,61.1,2.52,61,High-income
+29,Brazil,488881100,214326220,6.29,72.8,1.66,35,High-income
+30,British Virgin Islands,158529,31145,NA,74.5,NA,NA,High-income
+31,Brunei,10480519,445382,NA,74.6,1.82,63,High-income
+32,Bulgaria,42560212,6885864,5.37,71.8,1.63,42,High-income
+33,Burkina Faso,5698262,22100690,4.67,59.3,4.95,41,Low-income
+34,Burundi,692908,12551215,NA,61.7,5.3,17,Low-income
+35,Cambodia,19028598,16589031,4.64,69.6,2.42,20,Low-income
+36,Cameroon,9297284,27198632,5.05,60.3,4.38,25,Low-income
+37,Canada,545634500,38155012,7.03,82.7,1.56,81,High-income
+38,Cape Verde,667694,587936,NA,74.1,2.18,57,Low-income
+39,Cayman Islands,NA,NA,NA,NA,NA,NA,High-income
+40,Central African Republic,227296,5457165,NA,53.9,4.5,26,Low-income
+41,Chad,1939918,17179744,4.25,52.5,5.45,19,Low-income
+42,Chile,85446920,19493184,6.17,78.9,1.74,67,High-income
+43,China,11472369000,1425893500,5.59,78.2,1.66,39,High-income
+44,Colombia,91703380,51516560,5.78,72.8,1.76,36,High-income
+45,Comoros,298171,821632,4.61,63.4,4.01,27,Low-income
+46,Congo,7464369,5835814,5.08,63.5,4.37,19,Low-income
+47,Cook Islands,91403,17028,NA,74.8,NA,NA,Low-income
+48,Costa Rica,7819507,5153959,6.58,77,1.72,56,High-income
+49,Cote d'Ivoire,11706642,27478250,5.23,58.6,4.6,35,Low-income
+50,Croatia,17701450,4060139,6.13,77.6,1.45,48,High-income
+51,Cuba,22057330,11256373,NA,73.7,1.72,47,High-income
+52,Curacao,1843765,190348,NA,75.4,NA,NA,High-income
+53,Cyprus,7600422,1244193,6.22,81.2,1.34,59,High-income
+54,Czechia,97138330,10510748,6.92,77.7,1.61,59,High-income
+55,Democratic Republic of Congo,2606688,95894120,NA,59.2,5.62,20,Low-income
+56,Denmark,29576956,5854246,7.64,81.4,1.78,88,High-income
+57,Djibouti,379178,1105562,NA,62.3,2.57,31,Low-income
+58,Dominica,158529,72435,NA,72.8,NA,57,High-income
+59,Dominican Republic,28922094,11117873,5.74,72.6,2.28,30,High-income
+60,East Timor,736328,1320944,NA,67.7,NA,35,Low-income
+61,Ecuador,41321736,17797736,5.53,73.7,2.36,34,High-income
+62,Egypt,249624140,109262184,4.29,70.2,3.02,35,Low-income
+63,El Salvador,7204384,6314165,6.12,70.7,1.98,35,Low-income
+64,Equatorial Guinea,5224788,1634473,NA,60.6,4.26,16,High-income
+65,Eritrea,820601,3620324,NA,66.5,3.79,24,Low-income
+66,Estonia,10449021,1328704,6.34,77.1,1.69,73,High-income
+67,Eswatini,1087219,1192273,4.4,57.1,2.85,38,Low-income
+68,Ethiopia,17792552,120283020,4.24,65,3.66,34,Low-income
+69,Falkland Islands,NA,NA,NA,NA,NA,NA,Low-income
+70,Faroe Islands,698346,52915,NA,79.3,NA,NA,High-income
+71,Fiji,1470402,924615,NA,67.1,2.4,NA,High-income
+72,Finland,37602330,5535982,7.82,82,1.79,85,High-income
+73,France,305963700,64531450,6.69,82.5,1.97,72,High-income
+74,French Guiana,651382,297462,NA,74.9,3.15,NA,Low-income
+75,French Polynesia,949800,304038,NA,79.5,1.94,NA,High-income
+76,Gabon,5712477,2341185,4.96,65.8,3.48,31,High-income
+77,Gambia,655699,2639922,5.16,62.1,5.07,37,Low-income
+78,Georgia,11009796,3757984,4.97,71.7,1.95,58,High-income
+79,Germany,674753540,83408560,7.03,80.6,1.5,80,High-income
+80,Ghana,21312802,32833036,4.87,63.8,3.71,41,Low-income
+81,Gibraltar,NA,NA,NA,NA,NA,NA,High-income
+82,Greece,56309280,10445368,5.95,80.1,1.3,45,High-income
+83,Greenland,510658.97,56266,NA,72.4,NA,NA,High-income
+84,Grenada,319210,124624,NA,74.9,2,52,High-income
+85,Guadeloupe,2291068,396057,NA,80.5,1.88,NA,Low-income
+86,Guam,NA,NA,NA,NA,NA,NA,High-income
+87,Guatemala,20327104,17608484,6.26,69.2,2.73,27,High-income
+88,Guernsey,NA,NA,NA,NA,NA,NA,Low-income
+89,Guinea,4841779,13531909,4.89,58.9,4.48,28,Low-income
+90,Guinea-Bissau,351839,2060730,NA,59.7,4.27,16,Low-income
+91,Guyana,3087826,804571,NA,65.7,2.39,37,High-income
+92,Haiti,2875923,11447575,NA,63.2,2.69,20,Low-income
+93,Honduras,10897812,10278346,6.02,70.1,2.29,29,Low-income
+94,Hong Kong,31664380,7494580,5.42,85.5,1.4,76,High-income
+95,Hungary,48454620,9709784,6.09,74.5,1.44,46,High-income
+96,Iceland,3374964,370338,7.56,82.7,1.89,76,High-income
+97,India,2709683700,1407563900,3.78,67.2,2.22,41,Low-income
+98,Indonesia,619277500,273753180,5.24,67.6,2.24,38,Low-income
+99,Iran,748878700,87923430,4.89,73.9,1.55,28,Low-income
+100,Iraq,185580690,43533590,4.94,70.4,4.09,18,High-income
+101,Ireland,37540330,4986525,7.04,82,1.97,73,High-income
+102,Isle of Man,NA,NA,NA,NA,NA,NA,High-income
+103,Israel,54528532,8900057,7.36,82.3,2.84,61,High-income
+104,Italy,328687330,59240336,6.47,82.9,1.53,52,High-income
+105,Jamaica,7689743,2827701,5.85,70.5,1.94,44,High-income
+106,Japan,1067398460,124612530,6.04,84.8,1.52,73,High-income
+107,Jersey,NA,NA,NA,NA,NA,NA,Low-income
+108,Jordan,25593718,11148288,4.15,74.3,3.07,49,High-income
+109,Kazakhstan,276683460,19196468,6.23,69.4,2.49,31,High-income
+110,Kenya,19875402,53005616,4.54,61.4,3.57,27,Low-income
+111,Kiribati,71533,128883,NA,67.4,3.45,NA,Low-income
+112,Kosovo,5644358,1662022,6.46,76.8,NA,37,High-income
+113,Kuwait,106134264,4250111,6.11,78.7,1.93,41,High-income
+114,Kyrgyzstan,9308101,6527742,5.83,70,2.79,29,Low-income
+115,Laos,20777500,7425055,5.14,68.1,2.45,29,Low-income
+116,Latvia,7266214,1873926,6.18,73.6,1.61,58,High-income
+117,Lebanon,24958900,5592626,2.96,75,1.7,28,Low-income
+118,Lesotho,2282165,2281464,3.51,53.1,2.87,41,Low-income
+119,Liberia,1195260,5193422,5.12,60.7,4.25,32,Low-income
+120,Libya,74525080,6735280,5.33,71.9,2.1,17,High-income
+121,Liechtenstein,150950,39058,NA,83.3,NA,NA,High-income
+122,Lithuania,13880837,2786652,6.45,73.7,1.7,59,High-income
+123,Luxembourg,8354555,639330,7.4,82.6,1.62,81,High-income
+124,Macao,1286771,686616,NA,85.4,1.43,NA,High-income
+125,Madagascar,4244355,28915652,4.34,64.5,3.92,25,Low-income
+126,Malawi,1552193,19889742,3.75,62.9,4.25,32,Low-income
+127,Malaysia,256048940,33573870,5.71,74.9,1.95,47,High-income
+128,Maldives,2118174,521469,NA,79.9,1.91,31,High-income
+129,Mali,4169757.8,21904990,4.48,58.9,5.6,32,Low-income
+130,Malta,1724154,526751,6.45,83.8,1.51,54,High-income
+131,Marshall Islands,158962,42074,NA,65.3,NA,NA,High-income
+132,Martinique,2100146,368799,NA,80.7,1.85,NA,Low-income
+133,Mauritania,4118111.2,4614981,4.15,64.4,4.38,27,Low-income
+134,Mauritius,4471674,1298922,6.07,73.6,1.43,51,High-income
+135,Mayotte,273281,316022,NA,74.2,3.51,NA,Low-income
+136,Mexico,407205060,126705140,6.13,70.2,2.04,28,High-income
+137,Micronesia,NA,NA,NA,NA,NA,NA,Low-income
+138,Moldova,5601510,3061509,5.86,68.8,1.23,33,High-income
+139,Monaco,NA,NA,NA,NA,NA,NA,High-income
+140,Mongolia,50315916,3347782,5.76,71,2.56,37,Low-income
+141,Montenegro,1751386,627856,5.55,76.3,1.64,45,High-income
+142,Montserrat,20678,4438,NA,75.6,NA,NA,Low-income
+143,Morocco,70577660,37076588,5.06,74,2.32,43,Low-income
+144,Mozambique,7156209,32077074,5.05,59.3,4.92,23,Low-income
+145,Myanmar,36306760,53798090,4.39,65.7,2.11,29,Low-income
+146,Namibia,4014822,2530150,4.46,59.3,3.14,53,High-income
+147,Nauru,59611,12533,NA,63.6,NA,NA,High-income
+148,Nepal,14173067,30034988,5.38,68.4,1.97,31,Low-income
+149,Netherlands,141045420,17501696,7.41,81.7,1.76,82,High-income
+150,New Caledonia,5496273,287809,NA,79,2.08,NA,High-income
+151,New Zealand,33789824,5129730,7.2,82.5,1.94,87,High-income
+152,Nicaragua,5059770,6850546,6.16,73.8,2.07,25,Low-income
+153,Niger,2698898,25252722,5,61.6,6.93,34,Low-income
+154,Nigeria,136986780,213401330,4.55,52.7,5.18,27,Low-income
+155,Niue,11922,1957,NA,70.8,NA,NA,Low-income
+156,North Korea,56380104,25971910,NA,73.3,1.87,14,Low-income
+157,North Macedonia,6851552,2103329,5.2,73.8,1.57,37,High-income
+158,Northern Mariana Islands,NA,NA,NA,NA,NA,NA,High-income
+159,Norway,40918550,5403021,7.37,83.2,1.83,84,High-income
+160,Oman,80991180,4520474,NA,72.5,2.35,52,High-income
+161,Pakistan,229512380,231402110,4.52,66.1,3.17,33,Low-income
+162,Palau,238444,18050,NA,66,NA,NA,High-income
+163,Palestine,3092231,5133393,4.48,73.5,NA,NA,Low-income
+164,Panama,13031620,4351264,6.31,76.2,2.39,37,High-income
+165,Papua New Guinea,8509555,9949438,NA,65.4,3.43,28,Low-income
+166,Paraguay,8576565,6703802,5.58,70.3,2.36,29,High-income
+167,Peru,56282000,33715464,5.56,72.4,2.26,35,High-income
+168,Philippines,144263870,113880340,5.9,69.3,2.78,36,Low-income
+169,Poland,328579780,38307724,6.12,76.5,1.29,60,High-income
+170,Portugal,40797216,10290109,6.02,81,1.24,64,High-income
+171,Puerto Rico,NA,NA,NA,NA,NA,NA,High-income
+172,Qatar,95667180,2688239,NA,79.3,1.81,62,High-income
+173,Reunion,4102958.2,966132,NA,81.6,2.19,NA,Low-income
+174,Romania,79326856,19328558,6.48,74.2,1.57,47,High-income
+175,Russia,1755547400,145102750,5.46,69.4,1.78,28,High-income
+176,Rwanda,1754532,13461891,3.27,66.1,3.53,56,Low-income
+177,Saint Barthelemy,NA,NA,NA,NA,NA,NA,Low-income
+178,Saint Helena,13785,5428,NA,76.8,NA,NA,Low-income
+179,Saint Kitts and Nevis,237794,47631,NA,71.7,NA,NA,High-income
+180,Saint Lucia,485927,179663,NA,71.1,1.42,55,High-income
+181,Saint Martin (French part),NA,NA,NA,NA,NA,NA,High-income
+182,Saint Pierre and Miquelon,62033,5905,NA,77.2,NA,NA,Low-income
+183,Saint Vincent and the Grenadines,213670,104340,NA,69.6,1.84,58,High-income
+184,Samoa,294080,218781,NA,72.8,3.74,NA,Low-income
+185,San Marino,NA,NA,NA,NA,NA,NA,High-income
+186,Sao Tome and Principe,131978,223118,NA,67.6,4.16,46,Low-income
+187,Saudi Arabia,672379900,35950396,6.52,76.9,2.34,49,High-income
+188,Senegal,13597910,16876726,5.05,67.1,4.42,45,Low-income
+189,Serbia,30868986,7296771,6.18,74.2,1.64,39,High-income
+190,Seychelles,568279,106486,NA,71.3,2.18,66,High-income
+191,Sierra Leone,1299404,8420642,3.57,60.1,3.99,30,Low-income
+192,Singapore,32506890,5941063,6.48,82.8,1.28,85,High-income
+193,Sint Maarten (Dutch part),647902,44061,NA,74,NA,NA,High-income
+194,Slovakia,35308216,5447621,6.39,74.9,NA,50,High-income
+195,Slovenia,12549330,2119408,6.63,80.7,1.67,60,High-income
+196,Solomon Islands,317925,707855,NA,70.3,3.59,44,Low-income
+197,Somalia,610374,17065588,NA,55.3,5.8,10,Low-income
+198,South Africa,435928900,59392256,5.19,62.3,2.33,43,High-income
+199,South Korea,616075000,51830136,5.94,83.7,1.38,57,High-income
+200,South Sudan,1582060,10748278,NA,55,4.47,13,Low-income
+201,Spain,233649540,47486932,6.48,83,1.43,58,High-income
+202,Sri Lanka,20780910,21773438,4.36,76.4,1.98,38,Low-income
+203,Sudan,21038216,45657204,NA,65.3,4.23,16,Low-income
+204,Suriname,2793206,612989,NA,70.3,2.26,43,High-income
+205,Sweden,35848948,10467095,7.38,83,1.91,85,High-income
+206,Switzerland,34931692,8691409,7.51,84,1.56,85,High-income
+207,Syria,27000770,21324366,NA,72.1,2.69,13,Low-income
+208,Taiwan,282856060,23859904,6.51,81,1.27,63,High-income
+209,Tajikistan,10336408,9750078,5.38,71.6,3.14,25,Low-income
+210,Tanzania,13058865,63588332,3.7,66.2,4.71,36,Low-income
+211,Thailand,278495700,71601100,5.89,78.7,1.42,36,High-income
+212,Togo,2342020,8644829,4.11,61.6,4.14,30,Low-income
+213,Tokelau,NA,NA,NA,NA,NA,NA,Low-income
+214,Tonga,174859,106034,NA,71,3.44,NA,High-income
+215,Trinidad and Tobago,36124040,1525671,NA,73,1.7,41,High-income
+216,Tunisia,31582746,12262949,4.52,73.8,2.09,43,Low-income
+217,Turkey,446204200,84775410,4.74,76,1.97,41,High-income
+218,Turkmenistan,83006810,6341850,5.47,69.3,2.66,20,High-income
+219,Turks and Caicos Islands,341183,45141,NA,74.6,NA,NA,High-income
+220,Tuvalu,7948,11229,NA,64.5,NA,NA,High-income
+221,Uganda,5780464,45853780,4.6,62.7,5.15,26,Low-income
+222,Ukraine,201857710,43531424,5.08,71.6,1.6,32,Low-income
+223,United Arab Emirates,204086660,9365149,6.58,78.7,1.67,70,High-income
+224,United Kingdom,346773200,67281040,6.94,80.7,1.87,80,High-income
+225,United States,5007336000,336997630,6.98,77.2,1.89,71,High-income
+226,United States Virgin Islands,NA,NA,NA,NA,NA,NA,High-income
+227,Uruguay,6737872,3426265,6.47,75.4,1.95,70,High-income
+228,Uzbekistan,121631480,34081452,6.06,70.9,2.16,23,Low-income
+229,Vanuatu,174859,319146,NA,70.4,3.1,46,Low-income
+230,Vatican,NA,NA,NA,NA,NA,NA,NA
+231,Venezuela,79746600,28199862,4.93,70.6,2.21,18,Low-income
+232,Vietnam,326013660,97468024,5.49,73.6,1.94,33,Low-income
+233,Wallis and Futuna,27818,11654,NA,78.4,NA,NA,Low-income
+234,Western Sahara,NA,NA,NA,NA,NA,NA,Low-income
+236,Yemen,12476597,32981644,4.2,63.8,3.52,14,Low-income
+237,Zambia,7676180,19473132,3.76,61.2,4.71,35,Low-income
+238,Zimbabwe,11296114,15993525,3,59.3,3.4,22,Low-income
+239,Micronesia (country),NA,NA,NA,NA,NA,NA,Low-income
