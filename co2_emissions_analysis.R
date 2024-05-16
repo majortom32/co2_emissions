@@ -1,27 +1,150 @@
-# assignment 1 revision for final project 
+# R code analyzing potential causes of CO2_emissions
+# The objective is to define a regression model based on the dataset
 
+################################################
+#Simplified code - find the complete method below
+################################################
 
-install.packages("gitcreds")
-library(gitcreds)
-gitcreds_set()
-
-
-#####################################
-########### Assignment 1 ############
-## Linear least-squares regression ##
-#####################################
-
-# simple regression & correlation
+# Load necessary libraries
 library(car)
 library(ggplot2)
 library(scales)
 library(dplyr)
 library(reshape2)
 library(GGally)
+library(e1071)
+
+# Load the dataset
 head(ds_assign)
 summary(ds_assign)
 
+# Function to create histograms with optional log transformation
+create_histogram <- function(data, var, log_transform = FALSE, bins = 30) {
+  if (log_transform) {
+    data[[paste0("log_", var)]] <- log(data[[var]])
+    var <- paste0("log_", var)
+  }
+  ggplot(data, aes_string(x = var)) +
+    geom_histogram(fill = "skyblue", color = "black", bins = bins) +
+    labs(title = paste("Histogram of", var), x = var, y = "Frequency") +
+    stat_bin(geom = "text", aes(label = ifelse(..count.. != 0, ..count.., ""), vjust = -0.5))
+}
 
+# Create histograms for CO2_emissions and Population
+create_histogram(ds_assign, "CO2_emissions")
+create_histogram(ds_assign, "CO2_emissions", log_transform = TRUE)
+create_histogram(ds_assign, "Population")
+create_histogram(ds_assign, "Population", log_transform = TRUE)
+
+# Create summary and histograms for other variables
+summary(ds_assign$Happiness_index)
+create_histogram(ds_assign, "Happiness_index")
+summary(ds_assign$Life_expectancy)
+create_histogram(ds_assign, "Life_expectancy")
+summary(ds_assign$Fertility_rate)
+create_histogram(ds_assign, "Fertility_rate")
+create_histogram(ds_assign, "Fertility_rate", log_transform = TRUE)
+summary(ds_assign$Corruption_perception_index)
+create_histogram(ds_assign, "Corruption_perception_index")
+create_histogram(ds_assign, "Corruption_perception_index", log_transform = TRUE)
+
+# Scatter plot function with optional log transformation
+create_scatter_plot <- function(data, x_var, y_var, log_transform = FALSE) {
+  if (log_transform) {
+    data[[paste0("log_", x_var)]] <- log(data[[x_var]])
+    data[[paste0("log_", y_var)]] <- log(data[[y_var]])
+    x_var <- paste0("log_", x_var)
+    y_var <- paste0("log_", y_var)
+  }
+  ggplot(data, aes_string(x = x_var, y = y_var)) +
+    geom_point() +
+    labs(title = paste("Scatter Plot of", x_var, "vs.", y_var), x = x_var, y = y_var) +
+    theme_minimal()
+}
+
+# Create scatter plots
+create_scatter_plot(ds_assign, "Population", "CO2_emissions")
+create_scatter_plot(ds_assign, "Population", "CO2_emissions", log_transform = TRUE)
+create_scatter_plot(ds_assign, "Happiness_index", "CO2_emissions")
+create_scatter_plot(ds_assign, "Happiness_index", "CO2_emissions", log_transform = TRUE)
+create_scatter_plot(ds_assign, "Fertility_rate", "CO2_emissions")
+create_scatter_plot(ds_assign, "Fertility_rate", "CO2_emissions", log_transform = TRUE)
+
+# Fit multiple regression models
+fit_model <- function(data, formula) {
+  model <- lm(formula, data = data)
+  summary(model)
+}
+
+# Transform the dataset
+ds_assign <- ds_assign %>%
+  mutate(log_CO2_emissions = log(CO2_emissions),
+         log_Population = log(Population),
+         log_Fertility_rate = log(Fertility_rate),
+         Income_level = factor(Income.level))
+
+# Fit the model with log-transformed variables
+model_formula <- log_CO2_emissions ~ log_Population + Happiness_index + log_Fertility_rate + Income_level
+model_summary <- fit_model(ds_assign, model_formula)
+
+# Print model summary and VIF
+print(model_summary)
+print(vif(model_summary))
+
+# Create a pairs plot
+ggpairs(ds_assign, columns = c("log_CO2_emissions", "log_Population", "Happiness_index", "log_Fertility_rate"))
+
+# Cook's distance plot
+cooks_d <- cooks.distance(model_summary)
+ggplot(data.frame(Index = 1:length(cooks_d), CooksD = cooks_d), aes(x = Index, y = CooksD)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  geom_hline(yintercept = 4/(nrow(ds_assign) - length(model_summary$coefficients) - 1), linetype = "dashed", color = "red") +
+  labs(title = "Cook's Distance Plot", x = "Observation Index", y = "Cook's Distance") +
+  theme_minimal()
+
+
+#downloading images 
+
+
+# Save correlation plot
+ggpairs_plot <- ggpairs(ds_assign, columns = c("log_CO2_emissions", "log_Population", "Happiness_index", "log_Fertility_rate"))
+ggsave("correlation_plot.png", ggpairs_plot, width = 8, height = 6)
+
+# Save Q-Q plot of residuals
+png("qq_plot.png", width = 800, height = 600)
+qqnorm(residuals(model_summary))
+qqline(residuals(model_summary))
+dev.off()
+
+# Save Residuals vs. Log Population plot
+png("residuals_vs_log_population.png", width = 800, height = 600)
+ggplot(model_frame, aes(x = log_Population, y = studentized_residuals)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Studentized Residuals vs. Log Population", x = "Log Population", y = "Studentized Residuals") +
+  theme_minimal()
+dev.off()
+
+# Save Component Plus Residual Plots
+png("cp_residual_population.png", width = 800, height = 600)
+crPlots(model_summary, variable = "log_Population")
+dev.off()
+
+png("cp_residual_happiness.png", width = 800, height = 600)
+crPlots(model_summary, variable = "Happiness_index")
+dev.off()
+
+png("cp_residual_fertility.png", width = 800, height = 600)
+crPlots(model_summary, variable = "log_Fertility_rate")
+dev.off()
+
+
+##############################
+#Complete, step-by-step method
+##############################
+
+head(ds_assign)
+summary(ds_assign)
 
 #UNIVARIATE GRAPH OF CO2_emissions 
 
@@ -31,8 +154,6 @@ ggplot(ds_assign, aes(x = CO2_emissions)) +
   labs(title = "Histogram of CO2 Emissions in metric tons", x = "CO2 Emissions in metric tons", y = "Frequency") +  # Add title and axis labels
   stat_bin(geom = "text", aes(label = ifelse(..count.. != 0, ..count.., ""), vjust = -0.5))  # Add counts over each bar if count is not zero
 
-#symbox( ~ CO2_emissions, data=ds_assign)  ## to select a transformation for CO2_emissions
-
 # Log transformation of CO2_emissions
 ds_assign$log_CO2_emissions <- log(ds_assign$CO2_emissions)
 
@@ -41,8 +162,6 @@ ggplot(ds_assign, aes(x = log_CO2_emissions)) +
   geom_histogram(fill = "skyblue", color = "black", bins = 30) +  # Adjust the number of bins as needed
   labs(title = "Histogram of Log Transformed CO2 Emissions", x = "Log CO2 Emissions", y = "Frequency") +  # Add title and axis labels
   stat_bin(geom = "text", aes(label = ifelse(..count.. != 0, ..count.., ""), vjust = -0.5))  # Add counts over each bar if count is not zero
-
-
 
 #UNIVARIATE GRAPH OF POPULATION 
 
@@ -63,8 +182,6 @@ ggplot(ds_assign, aes(x = log_Population)) +
   scale_x_continuous(breaks = pretty(log(ds_assign$Population), n = 10), labels = scales::comma) +  # Set breaks and format labels for x-axis
   stat_bin(geom = "text", aes(label = ifelse(..count.. != 0, ..count.., ""), vjust = -0.5))  # Add counts over each bar if count is not zero
 
-
-
 #UNIVARIATE GRAPH OF Happiness_index 
 summary(ds_assign$Happiness_index)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
@@ -82,8 +199,6 @@ ggplot(ds_assign, aes(y = Happiness_index)) +
   geom_boxplot(fill = "skyblue", color = "black") +  # Adjust fill and color as needed
   labs(title = "BoxPlot of Happiness Index", x = "Happiness Index", y = "Density") +  # Add title and axis labels
   scale_x_continuous(labels = comma)  # Format the numbers with commas
-
-
 
 #UNIVARIATE GRAPH OF Life_expectancy 
 summary(ds_assign$Life_expectancy)
@@ -103,7 +218,6 @@ ggplot(ds_assign, aes(x = Life_expectancy)) +
   labs(title = "Density Plot of Life Expectancy", x = "Life Expectancy", y = "Density") +  # Add title and axis labels
   scale_x_continuous(labels = comma)  # Format the numbers with commas
 
-
 #UNIVARIATE GRAPH OF Fertility_rate 
 summary(ds_assign$Fertility_rate)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
@@ -122,13 +236,11 @@ ggplot(ds_assign, aes(x = log(Fertility_rate))) +
   labs(title = "Density Plot of Fertility Rate", x = "Log Fertility Rate", y = "Density") +  # Add title and axis labels
   scale_x_continuous(labels = comma)  # Format the numbers with commas
 
-
 # Create the histogram with ggplot
 ggplot(ds_assign, aes(x = log(Fertility_rate))) +
   geom_histogram(fill = "skyblue", color = "black", bins = 30) +  # Adjust number of bins as needed
   labs(title = "Histogram of Log Fertility Rate", 
        x = "Log Fertility Rate", y = "Count")  # Add title and axis labels
-
 
 # Log transformation of Fertility_rate
 ds_assign$log_Fertility_rate <- log(ds_assign$Fertility_rate)
@@ -148,8 +260,6 @@ ggplot(ds_assign, aes(x = log_Fertility_rate)) +
   geom_density(fill = "skyblue", color = "black") +  # Adjust fill and color as needed
   labs(title = "Density Plot of Log Transformed Fertility Rate", x = "Log Fertility Rate", y = "Density") +  # Add title and axis labels
   scale_x_continuous(labels = scales::comma)  # Format the numbers with commas
-
-
 
 #UNIVARIATE GRAPH OF Corruption_perception_index - we need to transform
 
@@ -180,7 +290,6 @@ ggplot(ds_assign, aes(x = log_Corruption_perception_index)) +
   stat_bin(geom = "text", aes(label = ..count.., y = ..count..), vjust = -0.5) +  # Add counts over each bin
   scale_x_continuous(labels = scales::comma)  # Format the numbers with commas
 
-
 # Log transformation of Corruption_perception_index
 ds_assign$log_Corruption_perception_index <- log(ds_assign$Corruption_perception_index)
 
@@ -190,27 +299,13 @@ ggplot(ds_assign, aes(x = log_Corruption_perception_index)) +
   labs(title = "Density Plot of Log Transformed Corruption Perception Index", x = "Log Corruption Perception Index", y = "Density") +  # Add title and axis labels
   scale_x_continuous(labels = scales::comma)  # Format the numbers with commas
 
-
-
 ################
 #BIVARIATE GRAPH
 ################
+#BIVARIATE GRAPH
 ################
 #BIVARIATE GRAPH
 ################
-################
-#BIVARIATE GRAPH
-################
-################
-#BIVARIATE GRAPH
-################
-################
-#BIVARIATE GRAPH
-################
-
-
-
-
 
 # y = CO2_emissions 
 # x = Population
@@ -233,7 +328,6 @@ ggplot(ds_assign, aes(x = Population, y = CO2_emissions)) +
        x = "Population", 
        y = "CO2 Emissions") +
   theme_minimal()
-
 
 # Tranformation Log (CO2_emissions) and Log(Population)
 # Assuming ds_assign is your data frame with 'Population' and 'CO2_emissions' columns
@@ -281,8 +375,6 @@ print(model_summary)
 # Hence, around 9:10 of the variation of Log CO2_emissions is NOT explained by 
 # happiness Index
 
-
-
 # Create a scatter plot of log-transformed CO2 emissions against fertility rate with a local moving average curve
 ggplot(ds_assign, aes(x = Happiness_index, y = log(CO2_emissions))) +
   geom_point() + # Add points
@@ -291,7 +383,6 @@ ggplot(ds_assign, aes(x = Happiness_index, y = log(CO2_emissions))) +
        x = "Happiness Index",
        y = "Log of CO2 Emissions") +
   theme_minimal()
-
 
 # Check the structure after transformation
 str(ds_assign)
@@ -306,11 +397,6 @@ ggplot(ds_assign, aes(x = Happiness_index, y = log_CO2_emissions)) +
 
 # You can create similar plots for each of the transformations
 
-
-
-
-
-
 ggplot(ds_assign, aes(x = Fertility_rate, y = CO2_emissions)) +
   geom_point() +
   labs(title = "Scatter Plot of Fertility Rate vs. CO2 Emissions", x = "Fertility Rate", y = "CO2 Emissions")
@@ -323,11 +409,7 @@ ggplot(ds_assign, aes(x = Corruption_perception_index, y = CO2_emissions)) +
   geom_point() +
   labs(title = "Scatter Plot of Corruption Perception Index vs. CO2 Emissions", x = "Corruption Perception Index", y = "CO2 Emissions")
 
-
-
 #log transformation of y = CO2_emissions 
-
-
 
 # Log y = CO2_emissions, x = Population
 ggplot(ds_assign, aes(x = log(Population), y = log(CO2_emissions))) +
@@ -356,9 +438,7 @@ log_transform <- ggplot(ds_assign, aes(x = Life_expectancy, y = log(CO2_emission
        x = "Life Expectancy", y = "Log(CO2 Emissions)")
 log_transform
 
-
 # y = population
-
 
 ggplot(ds_assign, aes(x = CO2_emissions, y = Population)) +
   geom_point() +
@@ -376,12 +456,10 @@ ggplot(ds_assign, aes(x = Happiness_index, y = log(Population))) +  # Fixed the 
        x = "Happiness Index", 
        y = "Log of Population")  # Y label corrected to 'Log of Population'
 
-
 # x = fertility rate 
 ggplot(ds_assign, aes(x = Fertility_rate, y = Population)) +
   geom_point() +
   labs(title = "Scatter Plot of Fertility Rate vs. Population", x = "Fertility Rate", y = "Population")
-
 
 # Assuming ggplot2 library is already loaded
 ggplot(ds_assign, aes(x = Fertility_rate, y = log(Population))) + 
@@ -389,8 +467,6 @@ ggplot(ds_assign, aes(x = Fertility_rate, y = log(Population))) +
   labs(title = "Scatter Plot of Fertility Rate vs. Log of Population", 
        x = "Fertility Rate", 
        y = "Log of Population")
-
-
 
 ggplot(ds_assign, aes(x = Life_expectancy, y = Population)) +
   geom_point() +
@@ -402,18 +478,11 @@ ggplot(ds_assign, aes(x = Life_expectancy, y = log(Population))) +
        x = "Life Expectancy", 
        y = "Log of Population")  # Corrected y-axis label
 
-
-
 ggplot(ds_assign, aes(x = Corruption_perception_index, y = Population)) +
   geom_point() +
   labs(title = "Scatter Plot of Corruption Perception Index vs. Population", x = "Corruption Perception Index", y = "Population")
 
-
-
-
 # Log transformation of y = Population
-
-
 
 # Log y = Population, x = log(CO2_emissions)
 log_transform_population <- ggplot(ds_assign, aes(x = log(CO2_emissions), y = log(Population))) +
@@ -445,7 +514,6 @@ exp_transform <- ggplot(ds_assign, aes(x = Life_expectancy^2, y = log(Population
   labs(title = "Scatter Plot of Life Expectancy^2 vs. Log Transformed Population", 
        x = "Life Expectancy^2", y = "log(Population)")
 
-
 # Log y = Population, x = Corruption_perception_index
 log_transform_corruption <- ggplot(ds_assign, aes(x = Corruption_perception_index, y = log(Population))) +
   geom_point() +
@@ -460,12 +528,7 @@ log_transform_life_expectancy
 exp_transform # y = log(Pop), x = (life exp)^2 
 log_transform_corruption
 
-
-
-
 # y = Happiness_index 
-
-
 
 ggplot(ds_assign, aes(x = CO2_emissions, y = Happiness_index)) +
   geom_point() +
@@ -487,9 +550,7 @@ ggplot(ds_assign, aes(x = Corruption_perception_index, y = Happiness_index)) +
   geom_point() +
   labs(title = "Scatter Plot of Corruption Perception Index vs. Happiness Index", x = "Corruption Perception Index", y = "Happiness Index")
 
-
 # log transformation of y = Happiness_index 
-
 
 # Log y = Happiness_index, x = log(Population)
 log_transform_happiness <- ggplot(ds_assign, aes(x = log(Population), y = Happiness_index)) +
@@ -507,12 +568,7 @@ log_transform_fertility <- ggplot(ds_assign, aes(x = log(Fertility_rate), y = lo
 log_transform_happiness
 log_transform_fertility
 
-
-
-
 # y = Fertility_rate
-
-
 
 ggplot(ds_assign, aes(x = CO2_emissions, y = Fertility_rate)) +
   geom_point() +
@@ -534,10 +590,7 @@ ggplot(ds_assign, aes(x = Corruption_perception_index, y = Fertility_rate)) +
   geom_point() +
   labs(title = "Scatter Plot of Corruption Perception Index vs. Fertility Rate", x = "Corruption Perception Index", y = "Fertility Rate")
 
-
-
 # log y = Fertility_rate
-
 
 # Log y = Fertility_rate, x = log(Population)
 log_transform_fertility_population <- ggplot(ds_assign, aes(x = log(Population), y = Fertility_rate)) +
@@ -569,11 +622,7 @@ log_transform_fertility_happiness #no need
 log_transform_fertility_life_expectancy #no need
 log_transform_fertility_corruption
 
-
-
 # y = Life_expectancy
-
-
 
 ggplot(ds_assign, aes(x = CO2_emissions, y = Life_expectancy)) +
   geom_point() +
@@ -595,11 +644,7 @@ ggplot(ds_assign, aes(x = Corruption_perception_index, y = Life_expectancy)) +
   geom_point() +
   labs(title = "Scatter Plot of Corruption Perception Index vs. Life Expectancy", x = "Corruption Perception Index", y = "Life Expectancy")
 
-
-
-
 # log y = Life_expectancy 
-
 
 # x = log(CO2) , y = log(Life_exp)
 ggplot(ds_assign, aes(x = log(CO2_emissions), y = log(Life_expectancy))) +
@@ -613,12 +658,7 @@ log_transform_life_population <- ggplot(ds_assign, aes(x = log(Population), y = 
        x = "Log(Population)", y = "Life Expectancy")
 log_transform_life_population
 
-
-
-
 # y = Corruption_perception_index
-
-
 
 ggplot(ds_assign, aes(x = CO2_emissions, y = Corruption_perception_index)) +
   geom_point() +
@@ -640,9 +680,7 @@ ggplot(ds_assign, aes(x = Life_expectancy, y = Corruption_perception_index)) +
   geom_point() +
   labs(title = "Scatter Plot of Life Expectancy vs. Corruption Perception Index", x = "Life Expectancy", y = "Corruption Perception Index")
 
-
 # Log y = Corruption_perception_index 
-
 
 # Log y = Corruption_perception_index, x = log(Population)
 log_transform_corruption_population <- ggplot(ds_assign, aes(x = log(Population), y = Corruption_perception_index)) +
@@ -674,15 +712,9 @@ log_transform_corruption_happiness
 log_transform_corruption_fertility
 log_transform_corruption_life
 
-
-
-
 #############
 #Multivariate
 #############
-
-
-
 
 install.packages("devtools", dependencies = TRUE)
 install.packages(PerformanceAnalytics, dependencies = TRUE)
@@ -698,7 +730,6 @@ library(dplyr)
 # Create a new dataset without specific columns - without LOGs
 new_dataset <- select(ds_assign, -one_of(c("log_CO2_emissions", "log_Corruption_perception_index", "log_Population", "log_Fertility_rate")))
 head(new_dataset)
-
 
 #generate bm multivariate graph
 library(GGally)
@@ -736,8 +767,6 @@ print(model_summary)
 # Optionally, print R-squared values
 cat("\nR-squared: ", model_summary$r.squared, "\n")
 cat("Adjusted R-squared: ", model_summary$adj.r.squared, "\n")
-
-
 
 # Load necessary library
 library(dplyr)
@@ -793,7 +822,6 @@ nwdata=ds_assign_fixed ## Just save to the data to another variable
 
 ggpairs(data = nwdata, columns = c("Log_CO2_emissions", "Log_Population", "Happiness_index", "Life_expectancy","Fertility_rate", "Corruption_perception_index"), lower = list(continuous = "smooth"))
 
-
 #remove corruption and life_expectance
 
 # Assuming 'dplyr' and 'GGally' libraries are loaded
@@ -822,11 +850,6 @@ ggpairs(data = model_summary,
         columns = c("log_CO2_emissions", "log_Population", "Happiness_index", "Log_Fertility_rate"), 
         lower = list(continuous = "smooth"))
 
-
-
-#trying ggpairs
-
-
 # Create a new column for residuals in ds_assign and initialize with NA
 ds_assign$residuals <- NA
 
@@ -844,10 +867,8 @@ ggplot(ds_assign_with_residuals, aes(x = Income.level, y = residuals)) +
   labs(title = "Residuals by Income Level", x = "Income Level", y = "Residuals") +
   theme_minimal()
 
-
 library(GGally)
 ggpairs(ds.updated,columns = 1:4)
-
 
 require(datasets)
 data("swiss")
@@ -878,8 +899,6 @@ ggplot(ds_assign, aes(x = Income.level, y = residuals)) +
   geom_boxplot() +
   labs(title = "Residuals by Income Level", x = "Income Level", y = "Residuals") +
   theme_minimal()
-
-
 
 library(dplyr)
 library(GGally)
@@ -913,7 +932,6 @@ model_summary
 
 # Now, trying to transform happiness_index 
 
-
 # Apply a square root transformation to Happiness_index and create a new column
 ds_assign_fixed <- ds_assign_fixed %>%
   mutate(sqrt_Happiness_index = sqrt(Happiness_index))
@@ -944,7 +962,6 @@ vif_results <- vif(model)
 # Print the VIF results
 print(vif_results)
 
-
 #2) non-normally distributed error terms 
 studentized_residuals <- rstandard(model)
 qqnorm(studentized_residuals)
@@ -972,7 +989,6 @@ if (shapiro_test$p.value < 0.05) {
   cat("The residuals are normally distributed (p-value:", shapiro_test$p.value, ")\n")
 }
 
-
 # Assuming 'model' is the model object you created using lm()
 # Add the studentized residuals to the model frame
 model_frame <- model.frame(model)
@@ -993,11 +1009,7 @@ crPlots(model)
 crPlots(model_sqrt)
 crPlots(model_pow15)
 
-
 #multi variabte output for pow15 model
-
-
-
 
 library(GGally)
 
@@ -1017,10 +1029,8 @@ data_for_plot$Income.level <- as.factor(data_for_plot$Income.level)
 # Now, generate the ggpairs plot.
 ggpairs(data_for_plot)
 
-
 #ggpairs for model 1 
 library(GGally)
-
 
 # Assuming ds_assign is your original dataset and Fertility_rate is a column in this dataset.
 
@@ -1042,9 +1052,7 @@ data_model1 <- ds_assign[, variables_in_model1]
 # Now, generate the ggpairs plot.
 ggpairs(variables_in_model1)
 
-
 ggpairs(data_model1)
-
 
 # Assuming ds_assign is your original dataset and Fertility_rate is a column in this dataset.
 
@@ -1120,9 +1128,6 @@ corrplot(cor_matrix, method = "circle", type = "upper",
          title = "Correlation Matrix of Model Variables", 
          tl.col = "black", tl.srt = 45)
 
-
-
-
 # Calculate the correlation matrix for the numeric variables in the model
 numeric_variables <- c("log_Population", "Happiness_index", "pow15_Fertility_rate")
 cor_matrix <- cor(ds_assign[, numeric_variables], use = "complete.obs")
@@ -1131,9 +1136,6 @@ cor_matrix <- cor(ds_assign[, numeric_variables], use = "complete.obs")
 corrplot(cor_matrix, method = "circle", type = "upper", 
          title = "Correlation Matrix of Numeric Model Variables", 
          tl.col = "black", tl.srt = 45)
-
-
-
 
 library(ggplot2)
 library(car)
@@ -1154,8 +1156,6 @@ ggplot(df, aes(x = log_Population, y = std_Residuals)) +
   labs(x = "Log of Population", y = "Standardized Residuals") +
   theme_minimal()
 
-
-
 # Calculate VIF for the model
 vif_results <- vif(model_pow15)
 
@@ -1166,7 +1166,6 @@ summary(model)
 
 model <- lm(log_CO2_emissions ~ log_Population + Happiness_index + log_Fertility_rate + Income.level, 
             data = ds_assign_fixed)
-
 
 # Apply the power 3/2 transformation to fertility_rate
 ds_assign$pow15_Fertility_rate <- (ds_assign$Fertility_rate)^(3/2)
@@ -1465,7 +1464,3 @@ ggplot(ds_assign_fixed) +
        x = "Transformed Value",
        y = "Density")
 
-
-
-
-print("byebye world")
