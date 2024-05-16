@@ -1,0 +1,9 @@
+﻿Column Name,Description
+Country,Name of the country or region.
+CO2_emissions,"The total amount of carbon dioxide, measured in metric tons, emitted by a country in a specific year."
+Population,The total number of people living in a specific country or region.
+Happiness_index,"A measure of life satisfaction, where respondents rate their current lives on a ladder scale where 0 represents the worst possible life and 10 the best possible."
+Fertility_rate,The average number of children a woman would have over her lifetime.
+Life_expectancy,The average number of years a newborn child would live if current mortality patterns were to stay the same throughout its life.
+Corruption_perception_index,"An index published by Transparency International, which ranks countries by their perceived levels of public sector corruption, as determined by expert assessments and opinion surveys."
+Income_level,Dichotomous variables - High or Low
